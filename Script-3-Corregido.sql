@@ -26,7 +26,7 @@ ORDER BY length ;
 --6. Encuentra el nombre y apellido de los actores que tengan "Allen" en su apellido.
 SELECT first_name, last_name 
 FROM actor AS a 
-WHERE 'last_name' ilike'Allen';
+WHERE last_name ILIKE '%Allen%';
 
 /* 7. Encuentra la cantidad total de películas en cada clasificación de la tabla 'film' y muestra la clasificicación
 ** junto con el recuento.*/
@@ -36,9 +36,10 @@ GROUP BY rating ;
 
 
 -- 8. Encuentra la cantidad total de películas que son 'PG-13' o tienen una duración mayor a 3 horas en la tabla film.
-SELECT f.rating AS "Clasificación", f.length AS "Duración"
-FROM film AS f 
-WHERE rating = 'PG-13';
+
+SELECT COUNT(*) AS total_peliculas, f.rating AS "Clasificación", f.length AS "Duración"
+FROM film AS f
+WHERE f.rating = 'PG-13' OR f.length > 180;
 
 SELECT F.title AS "Título", f.rating AS "Clasificación" , F.length AS "Duración"
 FROM film AS f 
